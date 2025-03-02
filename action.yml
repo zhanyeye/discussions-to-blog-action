@@ -1,21 +1,19 @@
-name: Hello, World!
-description: Greet someone and record the time
-author: GitHub Actions
+name: Discussions To Blog
+description: 从 GitHub Discussions 中拉取指定 Category 帖子，并生成 Markdown 文件
+author: zhanyeye
 
-# Define your inputs here.
 inputs:
-  who-to-greet:
-    description: Who to greet
+  categories:
+    description: "Discussions 中确定需要转blog 的 category, 格式 xxx1, xxxx2, xxx3"
     required: true
-    default: World
-
-# Define your outputs here.
-outputs:
-  time:
-    description: The time we greeted you
+  output_dir:
+    description: "输出路径"
+    required: true
 
 runs:
   using: docker
   image: Dockerfile
-  env:
-    INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+branding:
+  icon: 'book'
+  color: 'yellow'
