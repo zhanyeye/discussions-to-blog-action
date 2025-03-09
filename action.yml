@@ -1,13 +1,13 @@
 name: Discussions To Blog
-description: 从 GitHub Discussions 中拉取指定 Category 帖子，并生成 Markdown 文件
+description: Pull specific category posts from GitHub Discussions and generate Markdown files
 author: zhanyeye
 
 inputs:
   categories:
-    description: "Discussions 中确定需要转blog 的 category, 格式 xxx1, xxxx2, xxx3"
+    description: "The categories in GitHub Discussions to be converted into blog posts, format: xxx1, xxx2, xxx3"
     required: true
   output_dir:
-    description: "输出路径"
+    description: "The output directory for generated files"
     required: true
 
 runs:
