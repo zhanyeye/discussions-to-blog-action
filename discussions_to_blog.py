@@ -56,7 +56,7 @@ def load_mapping(output_dir, workspace_root):
     """  
     加载映射文件并解析为字典  
     """
-    map_path = os.path.join(workspace_root, output_dir, ".discussions_map.json")
+    map_path = os.path.join(workspace_root, output_dir, ".discussions_index.json")
     if os.path.exists(map_path):
         with open(map_path, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -67,7 +67,7 @@ def save_mapping(output_dir, workspace_root, mapping):
     """  
     保存映射文件  
     """
-    map_path = os.path.join(workspace_root, output_dir, ".discussions_map.json")
+    map_path = os.path.join(workspace_root, output_dir, ".discussions_index.json")
     with open(map_path, "w", encoding="utf-8") as f:
         json.dump(mapping, f, indent=2)
     print(f"[INFO] 映射文件已更新：{map_path}")
