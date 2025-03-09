@@ -14,9 +14,9 @@ A GitHub Action to sync GitHub Discussions from a specific category to Markdown 
 ```yaml  
 name: Sync Discussions to Blog  
 
-on:  
-  schedule:  
-    - cron: "0 * * * *"  
+on:
+  discussion:  
+    types: [created, edited, deleted]  
 
 jobs:  
   sync-discussions:  
@@ -36,4 +36,4 @@ jobs:
         with:  
           commit_message: "Sync Discussions to Markdown"  
           branch: main  
-          file_pattern: content/posts/**/*
+          file_pattern: '*.json *.md'
