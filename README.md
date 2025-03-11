@@ -36,4 +36,4 @@ jobs:
         with:  
           commit_message: "Sync Discussions to Markdown"  
           branch: main  
-          file_pattern: '*.json *.md'
+          file_pattern: content/posts/**/* content/posts/*

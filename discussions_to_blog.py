@@ -70,7 +70,7 @@ def save_mapping(output_dir, workspace_root, mapping):
     map_path = os.path.join(workspace_root, output_dir, ".discussions_index.json")
     with open(map_path, "w", encoding="utf-8") as f:
         json.dump(mapping, f, indent=2)
-    print(f"[INFO] 映射文件已更新：{map_path}")
+    print(f"[INFO] 映射文件已更新：{mapping}")
 
 
 def process_created(discussion, output_dir, workspace_root, mapping):
@@ -85,6 +85,7 @@ def process_updated(discussion, output_dir, workspace_root, mapping):
     """
     处理 "edited" 事件
     """
+    print(f"[INFO] 更新内容：{json.dumps(discussion)}")
     filepath = mapping.get(discussion["node_id"])
     if filepath and Path(filepath).stem != discussion["title"]:
         delete_markdown(filepath)
@@ -111,7 +112,7 @@ def run(output_dir, event_file_path="/github/workflow/event.json", workspace_roo
     # 读取event.json文件内容
     with open(event_file_path, "r", encoding="utf-8") as f:
         event = json.load(f)
-    print(f"[INFO] 读取事件文件：{event}")
+    print(f"[INFO] 读取事件文件：{json.dumps(event)}")
 
 
 
