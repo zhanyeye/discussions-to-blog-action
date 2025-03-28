@@ -1,19 +1,58 @@
-name: Discussions To Blog
-description: Pull specific category posts from GitHub Discussions and generate Markdown files
-author: zhanyeye
+name: Discussions To Blog  
+description: Pull specific GitHub Discussions posts and convert them into blog Markdown files  
+author: zhanyeye  
 
-inputs:
-  categories:
-    description: "The categories in GitHub Discussions to be converted into blog posts, format: xxx1, xxx2, xxx3"
-    required: true
-  output_dir:
-    description: "The output directory for generated files"
-    required: true
+inputs:  
+  categories:  
+    description: "The categories in GitHub Discussions to be converted into blog posts, format: xxx1, xxx2, xxx3"  
+    required: true  
+  output_dir:  
+    description: "The output directory for generated files"  
+    required: true  
+  branch:  
+    description: "The branch to push changes to"  
+    required: true  
+  commit_message:  
+    description: "The commit message for pushing changes"  
+    default: "Sync Discussions to Markdown"  
+    required: false  
 
-runs:
-  using: docker
-  image: Dockerfile
+runs:  
+  using: composite  
+  steps:  
+    # Step 1: Setup Python environment
+    - name: Setup Python 3.x
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
 
-branding:
-  icon: 'book'
-  color: 'yellow'
+    # Step 2: Use actions/checkout to download the zhanyeye/discussions-to-blog-action repository
+    - name: Checkout Dependency Repository
+      uses: actions/checkout@v3
+      with:
+        repository: zhanyeye/discussions-to-blog-action
+        ref: main
+        path: dependencies       # Specify the storage path as "dependencies" in the current workspace
+
+    # Step 3: Install dependencies from the requirements.txt of the dependency repository
+    - name: Install Requirements
+      shell: bash
+      run: |  
+        echo "Installing Python Dependencies from requirements.txt"  
+        python -m pip install --upgrade pip  
+        pip install -r dependencies/requirements.txt  
+
+    # Step 4: Run Python script
+    - name: Run Discussions Script
+      shell: bash
+      run: |  
+        echo "Running entrypoint.py from dependencies..."  
+        python dependencies/entrypoint.py --categories "${{ inputs.categories }}" --output_dir "${{ inputs.output_dir }}"  
+
+    # Step 5: Commit and push changes
+    - name: Commit and Push Changes  
+      uses: stefanzweifel/git-auto-commit-action@v4  
+      with:  
+        commit_message: ${{ inputs.commit_message }}  
+        branch: ${{ inputs.branch }}  
+        file_pattern: ${{ inputs.output_dir }}/**/* ${{ inputs.output_dir }}/*  

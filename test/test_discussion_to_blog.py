@@ -1,8 +1,5 @@
 import unittest
-from unittest.mock import MagicMock, patch, mock_open
-import tempfile
 import os
-import json
 import discussions_to_blog
 
 
