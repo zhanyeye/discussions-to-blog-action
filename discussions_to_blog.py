@@ -23,11 +23,11 @@ def generate_front_matter(discussion: Dict) -> str:
     Generate front matter for a Markdown file based on discussion data.
     """
     return (
-        "---\n"  
-        f"title: \"{discussion['title']}\"\n"  
-        f"date: \"{discussion['updated_at']}\"\n"  
-        "draft: false\n"  
-        f"discussion_id: \"{discussion['node_id']}\"\n"  
+        "---\n"
+        f"title: \"{discussion['title']}\"\n"
+        f"date: \"{discussion['updated_at']}\"\n"
+        "draft: false\n"
+        f"discussion_id: \"{discussion['node_id']}\"\n"
         "---\n"
     )
 
@@ -80,9 +80,7 @@ def load_discussions_index(output_dir: Path, workspace_root: Path) -> Dict[str, 
 
         version = data.get("version", "0.0")
         if version != INDEX_FILE_VERSION:
-            logging.warning(
-                f"Index file version mismatch: expected {INDEX_FILE_VERSION}, got {version}. Attempting to load anyway."
-            )
+            logging.warning(f"Index file version mismatch: expected {INDEX_FILE_VERSION}, got {version}. Attempting to load anyway.")
 
         # Parse discussions content; fallback to empty if missing
         discussions = data.get("discussions", {})
@@ -105,7 +103,8 @@ def save_discussions_index(output_dir: Path, workspace_root: Path, mapping: Dict
     logging.info(f"Index file updated: {map_path}")
 
 
-def update_or_create_markdown(discussion: Dict, output_dir: Path, workspace_root: Path, mapping: Dict[str, Path]) -> None:
+def update_or_create_markdown(discussion: Dict, output_dir: Path, workspace_root: Path,
+                              mapping: Dict[str, Path]) -> None:
     """
     Create or update a Markdown file based on discussion data.
     """
@@ -157,10 +156,10 @@ def process_deleted(discussion: Dict, mapping: Dict[str, Path]) -> None:
 
 
 def run(
-    output_dir: str,
-    event_file_path: str = "/github/workflow/event.json",
-    workspace_root: Optional[str] = None,
-    categories: Optional[Set[str]] = None,
+        output_dir: str,
+        event_file_path: str = "/github/workflow/event.json",
+        workspace_root: Optional[str] = None,
+        categories: Optional[Set[str]] = None,
 ) -> None:
     """
     Main function: Coordinate the processing of Discussions based on event.json file.

@@ -36,20 +36,20 @@
 name: Sync Discussions to Blog
 
 on:
-  discussion:  
-    types: [created, edited, deleted]  
+  discussion:
+    types: [ created, edited, deleted ]
 
-jobs:  
-  sync-discussions-to-blog:  
-    runs-on: ubuntu-latest  
-    
-    steps:  
-      - name: Checkout repository  
-        uses: actions/checkout@v3  
+jobs:
+  sync-discussions-to-blog:
+    runs-on: ubuntu-latest
 
-      - name: Sync Discussions  
-        uses: zhanyeye/discussions-to-blog-action@main
-        with:   
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Sync Discussions
+        uses: zhanyeye/discussions-to-blog-action@v1
+        with:
           categories: "Announcements, General"
           output_dir: "content/posts"
           branch: main
