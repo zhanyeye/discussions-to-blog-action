@@ -55,4 +55,8 @@ runs:
       with:  
         commit_message: ${{ inputs.commit_message }}  
         branch: ${{ inputs.branch }}  
-        file_pattern: ${{ inputs.output_dir }}/**/* ${{ inputs.output_dir }}/*  
+        file_pattern: ${{ inputs.output_dir }}/**/* ${{ inputs.output_dir }}/*
+
+branding:
+  icon: 'book-open'
+  color: 'green'
