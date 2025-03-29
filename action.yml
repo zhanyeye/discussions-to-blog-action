@@ -31,7 +31,7 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: zhanyeye/discussions-to-blog-action
-        ref: v1
+        ref: main  #todo: 这里需要解决
         path: dependencies       # Specify the storage path as "dependencies" in the current workspace
 
     # Step 3: Install dependencies from the requirements.txt of the dependency repository
