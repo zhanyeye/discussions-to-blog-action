@@ -2,7 +2,9 @@
 
 一个 GitHub Action，可以将特定分类的 GitHub Discussions 转换为 Markdown 文件, 提交并推送到您的代码仓库中，方便集成到 Hugo 或 Jekyll 等静态网站生成器。
 
-[**点击此处查看英文版文档**](README.md)
+[**点击此处查看英文版文档**](README.md)  
+
+[**博客仓demo**](https://github.com/zhanyeye/zhanyeye.github.io) | [**博客页面demo**](https://blog.readme.fun/)  
 
 ---
 

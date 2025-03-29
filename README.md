@@ -2,7 +2,9 @@
 
 A GitHub Action that syncs GitHub Discussions from specific categories into Markdown files, making it easy to incorporate the discussions into static site generators like Hugo or Jekyll. Additionally, this action commits and pushes the changes to your repository.
 
-[**Read this in Chinese (简体中文)**](README.zh-CN.md)
+[**Read this in Chinese (简体中文)**](README.zh-CN.md)  
+
+[**Blog Repository Demo**](https://github.com/zhanyeye/zhanyeye.github.io) | [**Blog Page Demo**](https://blog.readme.fun/)
 
 ---
 
